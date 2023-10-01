@@ -1,0 +1,30 @@
+///100 days of RTL Challenge///
+
+///Abilash P///
+
+///4 bit subractor///
+
+module multi_sub (a,b,bbin,diff,borrow);
+
+input [3:0]a,b;
+input bbin;
+
+output [3:0]diff;
+output borrow;
+
+wire [2:0]bb;
+
+full_subractor FS1 (.a_in(a[0]),.b_in(b[0]),.bb_in(bbin),.diff(diff[0]),.borrow(bb[0]));
+
+full_subractor FS2 (.a_in(a[1]),.b_in(b[1]),.bb_in(bb[0]),.diff(diff[1]),.borrow(bb[1]));
+
+full_subractor FS3 (.a_in(a[2]),.b_in(b[2]),.bb_in(bb[1]),.diff(diff[2]),.borrow(bb[2]));
+
+full_subractor FS4 (.a_in(a[3]),.b_in(b[3]),.bb_in(bb[2]),.diff(diff[3]),.borrow(borrow));
+
+endmodule
+
+////another method////
+//// We can design multi bit subractor using the full adders (by giving second input as its complement)
+//// we know for neg numbers, we have to take two comp to make as + (so complement B input and make initial carry as 1)
+//// Now this will act a multi bit subractor
