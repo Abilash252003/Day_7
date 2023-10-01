@@ -1,0 +1,43 @@
+///100 days of RTL Challenge///
+
+///Abilash P///
+
+///4 bit subractor///
+
+module multi_sub_tb ();
+
+reg  [3:0]a,b;
+reg  bbin;
+
+wire [3:0]diff;
+wire borrow;
+
+multi_sub DUT (.a(a),.b(b),.bbin(bbin),.diff(diff),.borrow(borrow));
+
+integer i;
+
+initial
+begin
+  $display ("A is constant(0111) and B varies from 0000 to 1111");
+  a    = 4'b0111;
+  bbin = 1'b0;
+  for(i=4'b0000; i<=4'b1111; i=i+1)
+  begin
+       b = i;
+       #20;
+       $display ("Input A = %b----Input B = %b----Input bbin = %b----Output diff = %b----Output borrow = %b",a,b,bbin,diff,borrow);
+  end
+
+  $display ("B is constant(0111) and A varies from 0000 to 1111");
+  b    = 4'b0111;
+  bbin = 1'b1;
+  for(i=4'b0000; i<=4'b1111; i=i+1)
+  begin
+       a = i;
+       #20;
+       $display ("Input A = %b----Input B = %b----Input bbin = %b----Output diff = %b----Output borrow = %b",a,b,bbin,diff,borrow);
+  end
+
+end
+
+endmodule
